@@ -2,13 +2,11 @@ import { getImageFromDb } from "@/actions/image";
 import Image from "next/image";
 import ImageCard from "@/components/cards/image-card";
 
-interface ImagePageProps {
-  params: {
-    _id: string;
-  };
-}
-
-export default async function ImagePage({ params }: ImagePageProps) {
+export default async function ImagePage({
+  params,
+}: {
+  params: { _id: string };
+}) {
   const image = await getImageFromDb(params._id);
 
   return (

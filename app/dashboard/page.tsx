@@ -4,14 +4,16 @@ import Link from "next/link";
 import ImageCard from "@/components/cards/image-card";
 import Pagination from "@/components/nav/pagination";
 
-interface DashboardProps {
-  searchParams: { page?: number };
-}
+export default async function Dashboard({
+  searchParams,
+}: {
+  searchParams?: { page?: string | string[] };
+}) {
+  const pageParam = Array.isArray(searchParams?.page)
+    ? searchParams?.page[0]
+    : searchParams?.page;
 
-export default async function Dashboard({ searchParams }: DashboardProps) {
-  const page = searchParams?.page
-    ? parseInt(searchParams.page as unknown as string, 10)
-    : 1;
+  const page = pageParam ? parseInt(pageParam, 10) || 1 : 1;
   const limit = 6;
 
   const { images, totalCount } = await getUserImagesFromDb(page, limit);
@@ -26,7 +28,7 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {images.map((image: ImageType) => (
-          <Link href={`/dashboard/image/${image._id}`}>
+          <Link key={image._id} href={`/dashboard/image/${image._id}`}>
             <ImageCard image={image} />
           </Link>
         ))}
