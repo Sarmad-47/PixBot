@@ -1,13 +1,13 @@
-interface PageProps<T> {
-  params: T;
-}
 import { getImageFromDb } from "@/actions/image";
 import Image from "next/image";
 import ImageEditButtons from "@/components/image/image-edit-buttons";
 
 export default async function ImagePage({
   params,
-}: PageProps<{ _id: string }>) {
+}: {
+  params: { _id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const image = await getImageFromDb(params._id);
 
   return (
@@ -16,13 +16,12 @@ export default async function ImagePage({
         <Image
           src={image.url}
           alt={image.name}
-          layout="fill"
+          fill
+          sizes="(max-width: 768px) 100vw, 1024px"
           className="rounded-lg object-contain"
         />
       </div>
-      <div>
-        <ImageEditButtons image={image} />
-      </div>
+      <ImageEditButtons image={image} />
     </div>
   );
 }
