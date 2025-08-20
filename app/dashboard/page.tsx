@@ -7,13 +7,10 @@ import Pagination from "@/components/nav/pagination";
 export default async function Dashboard({
   searchParams,
 }: {
-  searchParams?: { page?: string | string[] };
+  searchParams: Promise<{ page?: string }>;
 }) {
-  const pageParam = Array.isArray(searchParams?.page)
-    ? searchParams?.page[0]
-    : searchParams?.page;
-
-  const page = pageParam ? parseInt(pageParam, 10) || 1 : 1;
+  const sp = await searchParams;
+  const page = sp?.page ? parseInt(sp.page as unknown as string, 10) : 1;
   const limit = 6;
 
   const { images, totalCount } = await getUserImagesFromDb(page, limit);
@@ -28,7 +25,7 @@ export default async function Dashboard({
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {images.map((image: ImageType) => (
-          <Link key={image._id} href={`/dashboard/image/${image._id}`}>
+          <Link href={`/dashboard/image/${image._id}`}>
             <ImageCard image={image} />
           </Link>
         ))}
