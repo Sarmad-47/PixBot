@@ -1,14 +1,17 @@
+// app/dashboard/image/[_id]/page.tsx
 import { getImageFromDb } from "@/actions/image";
 import Image from "next/image";
 import ImageEditButtons from "@/components/image/image-edit-buttons";
 
 export default async function ImagePage({
   params,
+  searchParams, // keep if your global PageProps also has this as a Promise; otherwise remove
 }: {
-  params: { _id: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  params: Promise<{ _id: string }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  const image = await getImageFromDb(params._id);
+  const { _id } = await params; // <-- important
+  const image = await getImageFromDb(_id);
 
   return (
     <div className="flex flex-col max-w-4xl mx-auto justify-center items-center p-4">
