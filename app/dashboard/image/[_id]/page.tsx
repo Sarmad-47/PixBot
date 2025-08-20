@@ -5,10 +5,8 @@ import ImageEditButtons from "@/components/image/image-edit-buttons";
 
 export default async function ImagePage({
   params,
-  searchParams, // keep if your global PageProps also has this as a Promise; otherwise remove
 }: {
   params: Promise<{ _id: string }>;
-  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const { _id } = await params; // <-- important
   const image = await getImageFromDb(_id);
