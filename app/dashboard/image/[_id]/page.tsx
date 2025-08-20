@@ -1,12 +1,13 @@
+interface PageProps<T> {
+  params: T;
+}
 import { getImageFromDb } from "@/actions/image";
 import Image from "next/image";
 import ImageEditButtons from "@/components/image/image-edit-buttons";
 
 export default async function ImagePage({
   params,
-}: {
-  params: { _id: string };
-}) {
+}: PageProps<{ _id: string }>) {
   const image = await getImageFromDb(params._id);
 
   return (
