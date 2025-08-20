@@ -1,4 +1,3 @@
-// app/dashboard/image/[_id]/page.tsx
 import { getImageFromDb } from "@/actions/image";
 import Image from "next/image";
 import ImageEditButtons from "@/components/image/image-edit-buttons";

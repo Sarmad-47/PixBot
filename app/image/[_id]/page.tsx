@@ -5,9 +5,10 @@ import ImageCard from "@/components/cards/image-card";
 export default async function ImagePage({
   params,
 }: {
-  params: { _id: string };
+  params: Promise<{ _id: string }>;
 }) {
-  const image = await getImageFromDb(params._id);
+  const { _id } = await params;
+  const image = await getImageFromDb(_id);
 
   return (
     <div>
