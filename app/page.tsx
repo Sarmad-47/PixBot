@@ -14,6 +14,7 @@ import GenerateImageInput from "@/components/forms/generate-image-input";
 import { currentUser } from "@clerk/nextjs/server";
 import { getLatestImages } from "@/actions/image";
 import ImageSlider from "@/components/image/image-slider";
+import UserGreeting from "@/components/dashboard/user-greeting";
 
 const BackgroundPattern = ({ className = "" }) => (
   <div className={`${className} z-0`}>
@@ -61,11 +62,7 @@ export default async function Home() {
               {/* Adjusted to take wider space */}
               <GenerateImageInput />
             </div>
-            <p className="mt-8 text-sm sm:text-base">
-              {user
-                ? "What image are you generating today?"
-                : "Sign in now and get 5 free image generation credits"}
-            </p>
+            <UserGreeting />
           </div>
         </section>
 

@@ -50,10 +50,18 @@ export const ImageProvider = ({ children }: { children: React.ReactNode }) => {
 
   // functions
   const generateImage = async () => {
+    // Prevent generation if prompt is empty
+    if (!imagePrompt.trim()) {
+      toast.error("Please enter a prompt");
+      return;
+    }
+
     setLoading(true);
 
     if (!isSignedIn) {
-      toast.loading("Please sign in to generate image");
+      toast.error("Please sign in to generate image");
+      setLoading(false);
+      return;
     }
 
     try {
@@ -61,6 +69,7 @@ export const ImageProvider = ({ children }: { children: React.ReactNode }) => {
       const { success, _id, credits } = await generateImageAi(imagePrompt);
       if (success) {
         setCredits(credits);
+        setImagePrompt(""); // Clear the prompt after successful generation
         toast.success("🎉 Image generated");
         router.push(`/dashboard/image/${_id}`);
       } else {
