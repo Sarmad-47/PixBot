@@ -1,10 +1,17 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import { LaptopMinimal, Bot, LogIn, LucideIcon } from "lucide-react";
 import ModeToggle from "./mode-toggle";
-import { currentUser } from "@clerk/nextjs/server";
 import Credits from "./credits";
 
 interface IconWithTextProps {
@@ -13,7 +20,6 @@ interface IconWithTextProps {
   text: string;
 }
 
-// Update the IconWithText component to include cursor-pointer
 const IconWithText: React.FC<IconWithTextProps> = ({
   href,
   icon: Icon,
@@ -27,8 +33,8 @@ const IconWithText: React.FC<IconWithTextProps> = ({
   </Link>
 );
 
-export default async function TopNav() {
-  const user = await currentUser();
+export default function TopNav() {
+  const { isSignedIn } = useUser(); // Client-side user check
 
   return (
     <div className="flex items-center justify-center space-x-10 p-5 shadow !overflow-x-hidden !overflow-y-hidden">
@@ -48,7 +54,7 @@ export default async function TopNav() {
         </div>
 
         {/* Show dashboard link based on if user is logged in */}
-        {user && (
+        {isSignedIn && (
           <IconWithText
             href="/dashboard"
             icon={LaptopMinimal}
@@ -59,7 +65,7 @@ export default async function TopNav() {
         <IconWithText href="/chat" icon={Bot} text="Chat" />
 
         {/* Show credits link only if user is logged in */}
-        {user && (
+        {isSignedIn && (
           <div className="flex flex-col items-center cursor-pointer">
             <Link href="/buy-credits">
               <Credits />
