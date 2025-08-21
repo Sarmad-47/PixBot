@@ -26,6 +26,7 @@ export default function Contact() {
   // Create refs
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null); // Added ref for input element
 
   // Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -67,8 +68,9 @@ export default function Contact() {
       };
       setMessages((prevMessages) => [...prevMessages, errorMessage]);
     } finally {
-      // Stop loading
+      // Stop loading and focus back on input
       setIsLoading(false);
+      inputRef.current?.focus(); // Auto-focus input after response
     }
   };
 
@@ -77,9 +79,10 @@ export default function Contact() {
     setMessage(e.target.value);
   };
 
-  // Auto-scroll to the last message
+  // Auto-scroll to the last message and auto-focus input on mount
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    inputRef.current?.focus(); // Auto-focus input when component mounts
   }, [messages]);
 
   return (
@@ -142,11 +145,13 @@ export default function Contact() {
       {/* Render input form */}
       <form onSubmit={handleSubmit} className="flex space-x-2">
         <Input
+          ref={inputRef} // Added ref to auto-focus
           className="flex-1"
           placeholder="Type your message..."
           value={message}
           onChange={handleInputChange}
           disabled={isLoading}
+          autoFocus // Ensure input is focused by default
         />
         <Button
           type="submit"
