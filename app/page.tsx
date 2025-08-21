@@ -97,9 +97,11 @@ export default async function Home() {
                       On Signup
                     </p>
                   </div>
-                  <Button className="mt-6 w-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white cursor-pointer">
-                    <Link href="/dashboard">Get Started</Link>
-                  </Button>
+                  <Link href="/dashboard" className="w-full">
+                    <Button className="mt-6 w-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white cursor-pointer">
+                      Get Started
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="bg-white dark:bg-gray-800">
@@ -121,9 +123,11 @@ export default async function Home() {
                       One-time purchase
                     </p>
                   </div>
-                  <Button className="mt-6 w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white cursor-pointer">
-                    <Link href="/buy-credits?credits=10">Buy Now</Link>
-                  </Button>
+                  <Link href="/buy-credits?credits=10" className="w-full">
+                    <Button className="mt-6 w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white cursor-pointer">
+                      Buy Now
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="bg-white dark:bg-gray-800">
@@ -145,9 +149,11 @@ export default async function Home() {
                       One-time purchase
                     </p>
                   </div>
-                  <Button className="mt-6 w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white cursor-pointer">
-                    <Link href="/buy-credits?credits=30">Buy Now</Link>
-                  </Button>
+                  <Link href="/buy-credits?credits=30" className="w-full">
+                    <Button className="mt-6 w-full bg-gradient-to-r from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 text-white cursor-pointer">
+                      Buy Now
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
               <Card className="bg-white dark:bg-gray-800">
@@ -169,9 +175,11 @@ export default async function Home() {
                       One-time purchase
                     </p>
                   </div>
-                  <Button className="mt-6 w-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white cursor-pointer">
-                    <Link href="/buy-credits?credits=100">Buy Now</Link>
-                  </Button>
+                  <Link href="/buy-credits?credits=100" className="w-full">
+                    <Button className="mt-6 w-full bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white cursor-pointer">
+                      Buy Now
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </div>
@@ -253,10 +261,12 @@ export default async function Home() {
               more
             </p>
 
-            <Button className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-purple-700 text-white font-semibold text-lg py-4 px-8 rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-800 transition duration-300 w-full max-w-xs mx-auto cursor-pointer">
-              <Sparkles className="w-6 h-6 mr-3" />
-              <Link href="/dashboard">Get Started</Link>
-            </Button>
+            <Link href="/dashboard" className="w-full">
+              <Button className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-purple-700 text-white font-semibold text-lg py-4 px-8 rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-800 transition duration-300 w-full max-w-xs mx-auto cursor-pointer">
+                <Sparkles className="w-6 h-6 mr-3" />
+                Get Started
+              </Button>
+            </Link>
           </div>
         </section>
 
@@ -296,10 +306,12 @@ export default async function Home() {
               <p className="mb-8 text-gray-200">
                 Have questions or need support? We're here to help!
               </p>
-              <Button className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-purple-700 text-white font-semibold text-lg py-4 px-8 rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-800 transition duration-300 w-full max-w-xs mx-auto cursor-pointer">
-                <MessageCircleIcon className="w-6 h-6 mr-3" />
-                <Link href="/chat">Chat Now</Link>
-              </Button>
+              <Link href="/chat">
+                <Button className="flex items-center justify-center bg-gradient-to-r from-purple-500 to-purple-700 text-white font-semibold text-lg py-4 px-8 rounded-lg shadow-lg hover:from-purple-600 hover:to-purple-800 transition duration-300 w-full max-w-xs mx-auto cursor-pointer">
+                  <MessageCircleIcon className="w-6 h-6 mr-3" />
+                  Chat Now
+                </Button>
+              </Link>
             </div>
           </div>
         </section>
